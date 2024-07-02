@@ -14,8 +14,18 @@ fn main() {
     println!("Searching for {}",config.query);
     println!("In file {}",config.file_path);
 
+//     let contents = fs::read_to_string(config.file_path)
+//         .expect("Should have been able to read the file");
+//     println!("with text:\n {}",contents);
+
+
+//calling the run function here
+run(config);
+}
+
+fn run(config: Config){
     let contents = fs::read_to_string(config.file_path)
-        .expect("Should have been able to read the file");
+    .expect("Should have been able to read the file");
     println!("with text:\n {}",contents);
 }
 struct Config{
