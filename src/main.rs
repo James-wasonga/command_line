@@ -21,13 +21,16 @@ fn main() {
 
 
 //calling the run function here
-run(config);
+ if let Err(e) = run(config){
+    println!("Application error: {e}");
+    process::exit(1);
+ }
 }
 
 fn run(config: Config) -> Result<(), Box<dyn Error>>{
-    let contents = fs::read_to_string(config.file_path);
+    let contents = fs::read_to_string(config.file_path)?;
     // .expect("Should have been able to read the file");
-    println!("with text:\n {:?}",contents);
+    println!("with text:\n {}",contents);
 
     Ok(())
 }
