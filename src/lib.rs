@@ -24,9 +24,30 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>>{
 
     Ok(())
 }
-// fn parse_config(args: &[String]) -> Config{
-//     let query = args[1].clone();
-//     let file_path = args[2].clone();
 
-//     Config{query, file_path}
-// }
+//writing tests
+
+pub fn search<'a>(query: &'a str, contents: &'a str) -> Vec<&'a str>{
+    vec![]
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+   
+
+    #[test]
+    fn one_result(){
+        let query = "duct";
+        let contents = "\
+        Rust:
+        safe,fast,productive.
+        pick three.";
+
+        assert_eq!(vec!["safe,fast,productive"], search(query,contents));
+    }
+  
+}
+
+
+
