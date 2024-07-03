@@ -1,7 +1,6 @@
 use std::fs;
 use std::error::Error;
 
-
 pub struct Config{
     pub query: String,
     pub file_path: String,
@@ -27,8 +26,19 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>>{
 
 //writing tests
 
-pub fn search<'a>(query: &'a str, contents: &'a str) -> Vec<&'a str>{
-    vec![]
+// pub fn search<'a>(query: &'a str, contents: &'a str) -> Vec<&'a str>{
+//     vec![]
+// }
+pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+    let mut results = Vec::new();
+
+    for line in contents.lines() {
+        if line.contains(query) {
+            results.push(line);
+        }
+    }
+
+    results
 }
 
 #[cfg(test)]
