@@ -9,7 +9,7 @@ fn main() {
     // let query = &args[1];
     // let file_path = &args[2];
     let config = Config::build(&args).unwrap_or_else(|err| {
-        println!("Problem passing an arguments: {err}");
+        eprintln!("Problem passing an arguments: {err}");
         process::exit(1);
     });
     
@@ -19,7 +19,7 @@ fn main() {
 
 //calling the run function here
  if let Err(e) = minigrep::run(config){
-    println!("Application error: {e}");
+    eprintln!("Application error: {e}");
     process::exit(1);
  }
 }
