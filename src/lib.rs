@@ -1,5 +1,6 @@
 use std::fs;
 use std::error::Error;
+use std::env;
 
 pub struct Config{
     pub query: String,
@@ -14,7 +15,9 @@ impl Config{
         let query = args[1].clone();
         let file_path = args[2].clone();
 
-        Ok(Config{query, file_path})
+        let ignore_case = env::var("IGNORE_CASE").is_ok();
+
+        Ok(Config{query, file_path, ignore_case})
     }
 }
 pub fn run(config: Config) -> Result<(), Box<dyn Error>>{
@@ -22,13 +25,14 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>>{
     // .expect("Should have been able to read the file");
    // println!("with text:\n {}",contents);
    let results = if config.ignore_case{
-        search_case_insensitive(&config.query, &contents);
+        search_case_insensitive(&config.query, &contents)
    }else{
-        search(&config.query, &contents);
+        search(&config.query, &contents)
    };
-   for line in results{
-        println!("{line}");
-   }
+   
+   for line in results {
+    println!("{line}");
+}
     // for line in search(&config.query, &contents){
     //     println!("{line}");
     // }
